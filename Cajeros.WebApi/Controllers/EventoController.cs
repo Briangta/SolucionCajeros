@@ -23,7 +23,7 @@ namespace Cajeros.WebApi.Controllers
         }
 
         [HttpPost]
-        public void Post([FromBody]string value)
+        public void Post()
         {
             string datos = Request.Content.ReadAsStringAsync().Result;
             Evento eventos = Newtonsoft.Json.JsonConvert.DeserializeObject<Evento>(datos);
