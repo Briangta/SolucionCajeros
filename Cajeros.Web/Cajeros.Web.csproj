@@ -180,6 +180,16 @@
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Cajeros.Aplicacion\Cajeros.Aplicacion.csproj">
+      <Project>{98b569d6-2caa-4aa7-aa4e-8f9f46fe184c}</Project>
+      <Name>Cajeros.Aplicacion</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Cajeros.Repositorio\Cajeros.Repositorio.csproj">
+      <Project>{3acec0ee-2d87-4129-8593-c29a884ad3f7}</Project>
+      <Name>Cajeros.Repositorio</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

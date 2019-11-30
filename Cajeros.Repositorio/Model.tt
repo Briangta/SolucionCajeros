@@ -24,6 +24,8 @@ foreach (var entity in typeMapper.GetItemsToGenerate<EntityType>(itemCollection)
     BeginNamespace(code);
 #>
 <#=codeStringGenerator.UsingDirectives(inHeader: false)#>
+using System.ComponentModel.DataAnnotations;
+[MetadataType(typeof(<#=code.Escape(entity)#>MetaData))]
 <#=codeStringGenerator.EntityClassOpening(entity)#>
 {
 <#

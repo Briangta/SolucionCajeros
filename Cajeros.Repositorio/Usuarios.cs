@@ -12,6 +12,8 @@ namespace Cajeros.Repositorio
     using System;
     using System.Collections.Generic;
     
+    using System.ComponentModel.DataAnnotations;
+    [MetadataType(typeof(UsuariosMetaData))]
     public partial class Usuarios
     {
         public int IdUsuario { get; set; }

@@ -7,6 +7,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cajeros.Repositorio", "Caje
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cajeros.Web", "Cajeros.Web\Cajeros.Web.csproj", "{E3A5755F-A970-434C-983E-41CB10CB1AA8}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Presentacion", "1. Presentacion", "{8AA1DBD8-D970-44C9-830A-B54C261D305C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Aplicacion", "2. Aplicacion", "{836E7426-87D5-4871-8771-3C92838F5972}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. Repositorio", "3. Repositorio", "{83459F9D-812C-4DB8-B01F-63DF02A54CD1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cajeros.RepositorioGenerador", "Cajeros.RepositorioGenerador\Cajeros.RepositorioGenerador.csproj", "{92751A8C-2DCC-4D9C-9546-D13B19EDA842}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cajeros.Aplicacion", "Cajeros.Aplicacion\Cajeros.Aplicacion.csproj", "{98B569D6-2CAA-4AA7-AA4E-8F9F46FE184C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,9 +31,23 @@ Global
 		{E3A5755F-A970-434C-983E-41CB10CB1AA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E3A5755F-A970-434C-983E-41CB10CB1AA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E3A5755F-A970-434C-983E-41CB10CB1AA8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92751A8C-2DCC-4D9C-9546-D13B19EDA842}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92751A8C-2DCC-4D9C-9546-D13B19EDA842}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92751A8C-2DCC-4D9C-9546-D13B19EDA842}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92751A8C-2DCC-4D9C-9546-D13B19EDA842}.Release|Any CPU.Build.0 = Release|Any CPU
+		{98B569D6-2CAA-4AA7-AA4E-8F9F46FE184C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98B569D6-2CAA-4AA7-AA4E-8F9F46FE184C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98B569D6-2CAA-4AA7-AA4E-8F9F46FE184C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98B569D6-2CAA-4AA7-AA4E-8F9F46FE184C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3ACEC0EE-2D87-4129-8593-C29A884AD3F7} = {83459F9D-812C-4DB8-B01F-63DF02A54CD1}
+		{E3A5755F-A970-434C-983E-41CB10CB1AA8} = {8AA1DBD8-D970-44C9-830A-B54C261D305C}
+		{92751A8C-2DCC-4D9C-9546-D13B19EDA842} = {83459F9D-812C-4DB8-B01F-63DF02A54CD1}
+		{98B569D6-2CAA-4AA7-AA4E-8F9F46FE184C} = {836E7426-87D5-4871-8771-3C92838F5972}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0CD5D075-4BD8-4140-8BA3-C08981155120}

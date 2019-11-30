@@ -12,6 +12,8 @@ namespace Cajeros.Repositorio
     using System;
     using System.Collections.Generic;
     
+    using System.ComponentModel.DataAnnotations;
+    [MetadataType(typeof(RolesMetaData))]
     public partial class Roles
     {
         public int IdRol { get; set; }
