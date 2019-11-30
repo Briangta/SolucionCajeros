@@ -45,6 +45,9 @@
     <Compile Include="CajeroMetaData.cs">
       <DependentUpon>CajerosGenerador.tt</DependentUpon>
     </Compile>
+    <Compile Include="EventoMetaData.cs">
+      <DependentUpon>CajerosGenerador.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CajerosGenerador.cs">
       <AutoGen>True</AutoGen>

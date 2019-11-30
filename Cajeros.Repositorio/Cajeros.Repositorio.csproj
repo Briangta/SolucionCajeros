@@ -54,7 +54,11 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Class1.cs" />
+    <Compile Include="Evento.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Metadatos\CajeroMetaData.cs" />
+    <Compile Include="Metadatos\EventoMetaData.cs" />
     <Compile Include="Metadatos\RolesMetaData.cs" />
     <Compile Include="Metadatos\UsuariosMetaData.cs" />
     <Compile Include="Model.Context.cs">

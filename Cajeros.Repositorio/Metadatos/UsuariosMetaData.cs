@@ -64,6 +64,7 @@ namespace Cajeros.Repositorio
         {
             get;
             set;
+    
         }
     }
 }

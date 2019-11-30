@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="RetoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="RetoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Cajero">
           <Key>
             <PropertyRef Name="IdCajero" />
@@ -13,6 +13,17 @@
           <Property Name="Nombre" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="Lat" Type="varchar" MaxLength="255" />
           <Property Name="Lng" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Evento">
+          <Key>
+            <PropertyRef Name="IdEvento" />
+          </Key>
+          <Property Name="IdEvento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdCajero" Type="int" Nullable="false" />
+          <Property Name="Fecha" Type="datetime" Nullable="false" />
+          <Property Name="Cantidad50" Type="int" Nullable="false" />
+          <Property Name="Cantidad20" Type="int" Nullable="false" />
+          <Property Name="Cantidad10" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Roles">
           <Key>
@@ -32,13 +43,45 @@
           <Property Name="Clave" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="IdRol" Type="int" Nullable="false" />
         </EntityType>
+        <Association Name="FK_IdCajero">
+          <End Role="Cajero" Type="Self.Cajero" Multiplicity="1" />
+          <End Role="Evento" Type="Self.Evento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cajero">
+              <PropertyRef Name="IdCajero" />
+            </Principal>
+            <Dependent Role="Evento">
+              <PropertyRef Name="IdCajero" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IdRol">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="IdRol" />
+            </Principal>
+            <Dependent Role="Usuarios">
+              <PropertyRef Name="IdRol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="RetoModelStoreContainer">
           <EntitySet Name="Cajero" EntityType="Self.Cajero" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Evento" EntityType="Self.Evento" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_IdCajero" Association="Self.FK_IdCajero">
+            <End Role="Cajero" EntitySet="Cajero" />
+            <End Role="Evento" EntitySet="Evento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IdRol" Association="Self.FK_IdRol">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Usuarios" EntitySet="Usuarios" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="RetoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -50,6 +93,7 @@
           <Property Name="Nombre" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Lat" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Lng" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Evento" Relationship="RetoModel.FK_IdCajero" FromRole="Cajero" ToRole="Evento" />
         </EntityType>
         <EntityType Name="Roles">
           <Key>
@@ -57,6 +101,7 @@
           </Key>
           <Property Name="IdRol" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nombre" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Usuarios" Relationship="RetoModel.FK_IdRol" FromRole="Roles" ToRole="Usuarios" />
         </EntityType>
         <EntityType Name="Usuarios">
           <Key>
@@ -68,12 +113,58 @@
           <Property Name="Correo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Clave" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="IdRol" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Roles" Relationship="RetoModel.FK_IdRol" FromRole="Usuarios" ToRole="Roles" />
         </EntityType>
         <EntityContainer Name="RetoEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Cajero" EntityType="Self.Cajero" />
           <EntitySet Name="Roles" EntityType="Self.Roles" />
           <EntitySet Name="Usuarios" EntityType="Self.Usuarios" />
+          <EntitySet Name="Evento" EntityType="RetoModel.Evento" />
+          <AssociationSet Name="FK_IdCajero" Association="RetoModel.FK_IdCajero">
+            <End Role="Cajero" EntitySet="Cajero" />
+            <End Role="Evento" EntitySet="Evento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IdRol" Association="RetoModel.FK_IdRol">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Usuarios" EntitySet="Usuarios" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Evento">
+          <Key>
+            <PropertyRef Name="IdEvento" />
+          </Key>
+          <Property Name="IdEvento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdCajero" Type="Int32" Nullable="false" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Cantidad50" Type="Int32" Nullable="false" />
+          <Property Name="Cantidad20" Type="Int32" Nullable="false" />
+          <Property Name="Cantidad10" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Cajero" Relationship="RetoModel.FK_IdCajero" FromRole="Evento" ToRole="Cajero" />
+        </EntityType>
+        <Association Name="FK_IdCajero">
+          <End Type="RetoModel.Cajero" Role="Cajero" Multiplicity="1" />
+          <End Type="RetoModel.Evento" Role="Evento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cajero">
+              <PropertyRef Name="IdCajero" />
+            </Principal>
+            <Dependent Role="Evento">
+              <PropertyRef Name="IdCajero" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IdRol">
+          <End Type="RetoModel.Roles" Role="Roles" Multiplicity="1" />
+          <End Type="RetoModel.Usuarios" Role="Usuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="IdRol" />
+            </Principal>
+            <Dependent Role="Usuarios">
+              <PropertyRef Name="IdRol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -107,6 +198,18 @@
                 <ScalarProperty Name="Correo" ColumnName="Correo" />
                 <ScalarProperty Name="Clave" ColumnName="Clave" />
                 <ScalarProperty Name="IdRol" ColumnName="IdRol" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Evento">
+            <EntityTypeMapping TypeName="RetoModel.Evento">
+              <MappingFragment StoreEntitySet="Evento">
+                <ScalarProperty Name="Cantidad10" ColumnName="Cantidad10" />
+                <ScalarProperty Name="Cantidad20" ColumnName="Cantidad20" />
+                <ScalarProperty Name="Cantidad50" ColumnName="Cantidad50" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="IdCajero" ColumnName="IdCajero" />
+                <ScalarProperty Name="IdEvento" ColumnName="IdEvento" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

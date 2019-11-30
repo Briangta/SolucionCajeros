@@ -8,6 +8,9 @@
         <EntityTypeShape EntityType="RetoModel.Cajero" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="RetoModel.Roles" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="RetoModel.Usuarios" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RetoModel.Evento" Width="1.5" PointX="3" PointY="4.875" />
+        <AssociationConnector Association="RetoModel.FK_IdCajero" />
+        <AssociationConnector Association="RetoModel.FK_IdRol" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

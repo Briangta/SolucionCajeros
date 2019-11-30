@@ -16,9 +16,18 @@ namespace Cajeros.Repositorio
     [MetadataType(typeof(CajeroMetaData))]
     public partial class Cajero
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Cajero()
+        {
+            this.Evento = new HashSet<Evento>();
+        }
+    
         public int IdCajero { get; set; }
         public string Nombre { get; set; }
         public string Lat { get; set; }
         public string Lng { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Evento> Evento { get; set; }
     }
 }

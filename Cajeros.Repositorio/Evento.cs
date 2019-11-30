@@ -13,19 +13,16 @@ namespace Cajeros.Repositorio
     using System.Collections.Generic;
     
     using System.ComponentModel.DataAnnotations;
-    [MetadataType(typeof(RolesMetaData))]
-    public partial class Roles
+    [MetadataType(typeof(EventoMetaData))]
+    public partial class Evento
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Roles()
-        {
-            this.Usuarios = new HashSet<Usuarios>();
-        }
+        public int IdEvento { get; set; }
+        public int IdCajero { get; set; }
+        public System.DateTime Fecha { get; set; }
+        public int Cantidad50 { get; set; }
+        public int Cantidad20 { get; set; }
+        public int Cantidad10 { get; set; }
     
-        public int IdRol { get; set; }
-        public string Nombre { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Usuarios> Usuarios { get; set; }
+        public virtual Cajero Cajero { get; set; }
     }
 }

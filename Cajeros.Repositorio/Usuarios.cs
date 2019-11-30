@@ -22,5 +22,7 @@ namespace Cajeros.Repositorio
         public string Correo { get; set; }
         public string Clave { get; set; }
         public int IdRol { get; set; }
+    
+        public virtual Roles Roles { get; set; }
     }
 }

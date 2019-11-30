@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cajeros.RepositorioGenerado
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cajeros.Aplicacion", "Cajeros.Aplicacion\Cajeros.Aplicacion.csproj", "{98B569D6-2CAA-4AA7-AA4E-8F9F46FE184C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cajeros.WebApi", "Cajeros.WebApi\Cajeros.WebApi.csproj", "{1468BEA9-AB4D-4884-A471-F223CBFC0F35}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{98B569D6-2CAA-4AA7-AA4E-8F9F46FE184C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{98B569D6-2CAA-4AA7-AA4E-8F9F46FE184C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{98B569D6-2CAA-4AA7-AA4E-8F9F46FE184C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1468BEA9-AB4D-4884-A471-F223CBFC0F35}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1468BEA9-AB4D-4884-A471-F223CBFC0F35}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1468BEA9-AB4D-4884-A471-F223CBFC0F35}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1468BEA9-AB4D-4884-A471-F223CBFC0F35}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -48,6 +54,7 @@ Global
 		{E3A5755F-A970-434C-983E-41CB10CB1AA8} = {8AA1DBD8-D970-44C9-830A-B54C261D305C}
 		{92751A8C-2DCC-4D9C-9546-D13B19EDA842} = {83459F9D-812C-4DB8-B01F-63DF02A54CD1}
 		{98B569D6-2CAA-4AA7-AA4E-8F9F46FE184C} = {836E7426-87D5-4871-8771-3C92838F5972}
+		{1468BEA9-AB4D-4884-A471-F223CBFC0F35} = {8AA1DBD8-D970-44C9-830A-B54C261D305C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0CD5D075-4BD8-4140-8BA3-C08981155120}
