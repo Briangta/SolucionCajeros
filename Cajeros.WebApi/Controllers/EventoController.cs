@@ -11,9 +11,9 @@ namespace Cajeros.WebApi.Controllers
     public class EventoController : ApiController
     {
         RetoEntities db = new RetoEntities();
-        public List<Cajero> Get()
+        public List<Evento> Get()
         {
-            return db.Cajero.ToList();
+            return db.Evento.ToList();
         }
 
         // GET api/<controller>/5
