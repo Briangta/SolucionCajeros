@@ -25,11 +25,6 @@ namespace Cajeros.Aplicacion
             set { HttpContext.Current.Session["blah"] = value; }
         }
 
-        /// <summary>
-        /// Acceso para los permisos
-        /// </summary>
-        /// <param name="funcion"> funcion de acceso</param>
-        /// <param name="salir">salir = true</param>
 
         public AccesoSeguridad(bool salir = true)
         {
@@ -55,13 +50,6 @@ namespace Cajeros.Aplicacion
             }
         }
 
-        /// <summary>
-        /// Inicia sesion de usuario
-        /// </summary>
-        /// <param name="usuarioEncontrado">Objeto de usuario obtenido si la autenticacion fue correcta</param>
-        /// <param name="permisos">Lista de Permisos del usuario</param>
-        /// <param name="organizacion">Organizacion logueada</param>
-        /// <param name="organizaciones">arbol de organizaciones</param>
         public static void IniciarSesion(Usuarios usuarioEncontrado)
         {
             PersonaLogueada = usuarioEncontrado;
@@ -95,9 +83,7 @@ namespace Cajeros.Aplicacion
         public static void CerrarSesion()
         {
             if (HttpContext.Current.Session != null)
-            {
                 HttpContext.Current.Session.Clear();
-            }
         }
 
         /// <summary>
