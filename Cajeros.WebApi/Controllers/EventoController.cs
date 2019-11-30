@@ -17,9 +17,9 @@ namespace Cajeros.WebApi.Controllers
         }
 
         // GET api/<controller>/5
-        public string Get(int id)
+        public Evento Get(int id)
         {
-            return "value";
+            return db.Evento.Find(id);
         }
 
         [HttpPost]
