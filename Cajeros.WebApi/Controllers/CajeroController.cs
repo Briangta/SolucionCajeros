@@ -5,8 +5,11 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using Cajeros.Repositorio;
+using System.Web.Http.Cors;
+
 namespace Cajeros.WebApi.Controllers
 {
+    [EnableCors("*","*","*")]
     public class CajeroController : ApiController
     {
         RetoEntities db = new RetoEntities();

@@ -4,10 +4,12 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using Cajeros.Repositorio;
 
 namespace Cajeros.WebApi.Controllers
 {
+    [EnableCors("*", "*", "*")]
     public class EventoController : ApiController
     {
         RetoEntities db = new RetoEntities();
