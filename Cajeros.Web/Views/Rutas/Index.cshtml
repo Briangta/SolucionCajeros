@@ -25,20 +25,53 @@
 <script src="~/Scripts/mapa.js"></script>
 
 <script>
+    var map;
+    function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+            center: { lat: 4.6199212, lng: -74.0865597 },
+            zoom: 13
+        });
+    }
+
     $(document).ready(function () {
         var url = "@ViewBag.Url";
-        $.get(url+"Cajero", function (data) {
-            $.each(data, function (index,value) {
+        var icon = {
+            url: "https://d1nhio0ox7pgb.cloudfront.net/_img/g_collection_png/standard/512x512/atm.png", // url
+            scaledSize: new google.maps.Size(20, 20), // scaled size
+            origin: new google.maps.Point(0,0), // origin
+            anchor: new google.maps.Point(0, 0) // anchor
+        };
+        
+
+
+
+        $.get(url + "Cajero", function (data) {
+            var marker;
+            $.each(data, function (index, value) {
+                
+                marker=new google.maps.Marker({
+                    position: { lat: parseFloat(value.Lat), lng: parseFloat(value.Lng) },
+                    title: value.Nombre,
+                    map: map,
+                    icon: icon,
+
+                });
+
+                marker.addListener('click', function () {
+                    bootbox.alert("Cajero: "+value.Nombre+"\n Direccion"+value.Direccion+" \n Cantidad Dinero")
+                });
                 console.log(value)
+                console.log({ lat: parseFloat(value.Lat), lng: parseFloat(value.Lng) })
+
+
+                
+
+                //marker.setMap(map);
             })
         });
     });
 
    setInterval(function () {
-          var marker = new google.maps.Marker({
-            position: {lat: -25.363, lng: 131.044},
-            map: map,
-            title: 'Hello World!'
-          });
+
     }, 5000);
 </script>

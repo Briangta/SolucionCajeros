@@ -13,6 +13,7 @@
           <Property Name="Nombre" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="Lat" Type="varchar" MaxLength="255" />
           <Property Name="Lng" Type="varchar" MaxLength="255" />
+          <Property Name="Direccion" Type="varchar" MaxLength="500" />
         </EntityType>
         <EntityType Name="Evento">
           <Key>
@@ -85,41 +86,11 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="RetoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Cajero">
-          <Key>
-            <PropertyRef Name="IdCajero" />
-          </Key>
-          <Property Name="IdCajero" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Lat" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="Lng" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Evento" Relationship="RetoModel.FK_IdCajero" FromRole="Cajero" ToRole="Evento" />
-        </EntityType>
-        <EntityType Name="Roles">
-          <Key>
-            <PropertyRef Name="IdRol" />
-          </Key>
-          <Property Name="IdRol" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Usuarios" Relationship="RetoModel.FK_IdRol" FromRole="Roles" ToRole="Usuarios" />
-        </EntityType>
-        <EntityType Name="Usuarios">
-          <Key>
-            <PropertyRef Name="IdUsuario" />
-          </Key>
-          <Property Name="IdUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nombres_" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Apellidos" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Correo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Clave" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="IdRol" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Roles" Relationship="RetoModel.FK_IdRol" FromRole="Usuarios" ToRole="Roles" />
-        </EntityType>
         <EntityContainer Name="RetoEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Cajero" EntityType="Self.Cajero" />
-          <EntitySet Name="Roles" EntityType="Self.Roles" />
-          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" />
+          <EntitySet Name="Cajero" EntityType="RetoModel.Cajero" />
           <EntitySet Name="Evento" EntityType="RetoModel.Evento" />
+          <EntitySet Name="Roles" EntityType="RetoModel.Roles" />
+          <EntitySet Name="Usuarios" EntityType="RetoModel.Usuarios" />
           <AssociationSet Name="FK_IdCajero" Association="RetoModel.FK_IdCajero">
             <End Role="Cajero" EntitySet="Cajero" />
             <End Role="Evento" EntitySet="Evento" />
@@ -129,6 +100,17 @@
             <End Role="Usuarios" EntitySet="Usuarios" />
           </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Cajero">
+          <Key>
+            <PropertyRef Name="IdCajero" />
+          </Key>
+          <Property Name="IdCajero" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Lat" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Lng" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Direccion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Evento" Relationship="RetoModel.FK_IdCajero" FromRole="Cajero" ToRole="Evento" />
+        </EntityType>
         <EntityType Name="Evento">
           <Key>
             <PropertyRef Name="IdEvento" />
@@ -140,6 +122,26 @@
           <Property Name="Cantidad20" Type="Int32" Nullable="false" />
           <Property Name="Cantidad10" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Cajero" Relationship="RetoModel.FK_IdCajero" FromRole="Evento" ToRole="Cajero" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="IdRol" />
+          </Key>
+          <Property Name="IdRol" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Usuarios" Relationship="RetoModel.FK_IdRol" FromRole="Roles" ToRole="Usuarios" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="IdUsuario" />
+          </Key>
+          <Property Name="IdUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombres_" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Apellidos" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Correo" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Clave" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="IdRol" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Roles" Relationship="RetoModel.FK_IdRol" FromRole="Usuarios" ToRole="Roles" />
         </EntityType>
         <Association Name="FK_IdCajero">
           <End Type="RetoModel.Cajero" Role="Cajero" Multiplicity="1" />
@@ -165,7 +167,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -174,30 +176,11 @@
           <EntitySetMapping Name="Cajero">
             <EntityTypeMapping TypeName="RetoModel.Cajero">
               <MappingFragment StoreEntitySet="Cajero">
-                <ScalarProperty Name="IdCajero" ColumnName="IdCajero" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="Lat" ColumnName="Lat" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
                 <ScalarProperty Name="Lng" ColumnName="Lng" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Roles">
-            <EntityTypeMapping TypeName="RetoModel.Roles">
-              <MappingFragment StoreEntitySet="Roles">
-                <ScalarProperty Name="IdRol" ColumnName="IdRol" />
+                <ScalarProperty Name="Lat" ColumnName="Lat" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Usuarios">
-            <EntityTypeMapping TypeName="RetoModel.Usuarios">
-              <MappingFragment StoreEntitySet="Usuarios">
-                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
-                <ScalarProperty Name="Nombres_" ColumnName="Nombres " />
-                <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
-                <ScalarProperty Name="Correo" ColumnName="Correo" />
-                <ScalarProperty Name="Clave" ColumnName="Clave" />
-                <ScalarProperty Name="IdRol" ColumnName="IdRol" />
+                <ScalarProperty Name="IdCajero" ColumnName="IdCajero" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -210,6 +193,26 @@
                 <ScalarProperty Name="Fecha" ColumnName="Fecha" />
                 <ScalarProperty Name="IdCajero" ColumnName="IdCajero" />
                 <ScalarProperty Name="IdEvento" ColumnName="IdEvento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="RetoModel.Roles">
+              <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IdRol" ColumnName="IdRol" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuarios">
+            <EntityTypeMapping TypeName="RetoModel.Usuarios">
+              <MappingFragment StoreEntitySet="Usuarios">
+                <ScalarProperty Name="IdRol" ColumnName="IdRol" />
+                <ScalarProperty Name="Clave" ColumnName="Clave" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+                <ScalarProperty Name="Nombres_" ColumnName="Nombres " />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
