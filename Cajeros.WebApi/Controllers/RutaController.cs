@@ -34,8 +34,8 @@ namespace Cajeros.WebApi.Controllers
 
 
             cajerosPrioritariosIds = cajeros.Select(r => r.IdCajero).ToList();
-            prioritarios.AddRange(db.Cajero.Where(r => !cajerosPrioritariosIds.Contains(r.IdCajero)).ToList());           
-
+            prioritarios.AddRange(db.Cajero.Where(r => !cajerosPrioritariosIds.Contains(r.IdCajero)).ToList());
+            prioritarios = prioritarios.GroupBy(r=>r.IdCajero).Select(r=>r.FirstOrDefault()).ToList();
             return prioritarios;
 
         }
