@@ -31,5 +31,6 @@ namespace Cajeros.Repositorio
         public virtual DbSet<Evento> Evento { get; set; }
         public virtual DbSet<Roles> Roles { get; set; }
         public virtual DbSet<Usuarios> Usuarios { get; set; }
+        public virtual DbSet<Ruta> Ruta { get; set; }
     }
 }

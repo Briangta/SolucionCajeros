@@ -60,6 +60,9 @@
     <Compile Include="RolesMetaData.cs">
       <DependentUpon>CajerosGenerador.tt</DependentUpon>
     </Compile>
+    <Compile Include="RutaMetaData.cs">
+      <DependentUpon>CajerosGenerador.tt</DependentUpon>
+    </Compile>
     <Compile Include="UsuariosMetaData.cs">
       <DependentUpon>CajerosGenerador.tt</DependentUpon>
     </Compile>

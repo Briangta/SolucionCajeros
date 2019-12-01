@@ -48,6 +48,15 @@
           <Property Name="IdRol" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="255" Nullable="false" />
         </EntityType>
+        <EntityType Name="Ruta">
+          <Key>
+            <PropertyRef Name="IdRuta" />
+          </Key>
+          <Property Name="IdRuta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdCajero" Type="int" Nullable="false" />
+          <Property Name="Fecha" Type="datetime" Nullable="false" />
+          <Property Name="Cumplido" Type="bit" Nullable="false" />
+        </EntityType>
         <EntityType Name="Usuarios">
           <Key>
             <PropertyRef Name="IdUsuario" />
@@ -67,6 +76,18 @@
               <PropertyRef Name="IdCajero" />
             </Principal>
             <Dependent Role="Evento">
+              <PropertyRef Name="IdCajero" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IdCajeroRuta">
+          <End Role="Cajero" Type="Self.Cajero" Multiplicity="1" />
+          <End Role="Ruta" Type="Self.Ruta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cajero">
+              <PropertyRef Name="IdCajero" />
+            </Principal>
+            <Dependent Role="Ruta">
               <PropertyRef Name="IdCajero" />
             </Dependent>
           </ReferentialConstraint>
@@ -100,10 +121,15 @@
           <EntitySet Name="Comportamiento" EntityType="Self.Comportamiento" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Evento" EntityType="Self.Evento" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ruta" EntityType="Self.Ruta" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_IdCajero" Association="Self.FK_IdCajero">
             <End Role="Cajero" EntitySet="Cajero" />
             <End Role="Evento" EntitySet="Evento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IdCajeroRuta" Association="Self.FK_IdCajeroRuta">
+            <End Role="Cajero" EntitySet="Cajero" />
+            <End Role="Ruta" EntitySet="Ruta" />
           </AssociationSet>
           <AssociationSet Name="FK_IdRol" Association="Self.FK_IdRol">
             <End Role="Roles" EntitySet="Roles" />
@@ -136,6 +162,11 @@
             <End Role="Roles" EntitySet="Roles" />
             <End Role="Usuarios" EntitySet="Usuarios" />
           </AssociationSet>
+          <EntitySet Name="Ruta" EntityType="RetoModel.Ruta" />
+          <AssociationSet Name="FK_IdCajeroRuta" Association="RetoModel.FK_IdCajeroRuta">
+            <End Role="Cajero" EntitySet="Cajero" />
+            <End Role="Ruta" EntitySet="Ruta" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Cajero">
           <Key>
@@ -149,6 +180,7 @@
           <Property Name="Tipo" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Evento" Relationship="RetoModel.FK_IdCajero" FromRole="Cajero" ToRole="Evento" />
           <NavigationProperty Name="Comportamiento" Relationship="RetoModel.FkComportamientoCajero" FromRole="Cajero" ToRole="Comportamiento" />
+          <NavigationProperty Name="Ruta" Relationship="RetoModel.FK_IdCajeroRuta" FromRole="Cajero" ToRole="Ruta" />
         </EntityType>
         <EntityType Name="Comportamiento">
           <Key>
@@ -233,6 +265,28 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Ruta">
+          <Key>
+            <PropertyRef Name="IdRuta" />
+          </Key>
+          <Property Name="IdRuta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdCajero" Type="Int32" Nullable="false" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Cumplido" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Cajero" Relationship="RetoModel.FK_IdCajeroRuta" FromRole="Ruta" ToRole="Cajero" />
+        </EntityType>
+        <Association Name="FK_IdCajeroRuta">
+          <End Type="RetoModel.Cajero" Role="Cajero" Multiplicity="1" />
+          <End Type="RetoModel.Ruta" Role="Ruta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cajero">
+              <PropertyRef Name="IdCajero" />
+            </Principal>
+            <Dependent Role="Ruta">
+              <PropertyRef Name="IdCajero" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -295,6 +349,16 @@
                 <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
                 <ScalarProperty Name="Nombres_" ColumnName="Nombres " />
                 <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ruta">
+            <EntityTypeMapping TypeName="RetoModel.Ruta">
+              <MappingFragment StoreEntitySet="Ruta">
+                <ScalarProperty Name="Cumplido" ColumnName="Cumplido" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="IdCajero" ColumnName="IdCajero" />
+                <ScalarProperty Name="IdRuta" ColumnName="IdRuta" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -21,6 +21,7 @@ namespace Cajeros.Repositorio
         {
             this.Evento = new HashSet<Evento>();
             this.Comportamiento = new HashSet<Comportamiento>();
+            this.Ruta = new HashSet<Ruta>();
         }
     
         public int IdCajero { get; set; }
@@ -34,5 +35,7 @@ namespace Cajeros.Repositorio
         public virtual ICollection<Evento> Evento { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Comportamiento> Comportamiento { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Ruta> Ruta { get; set; }
     }
 }

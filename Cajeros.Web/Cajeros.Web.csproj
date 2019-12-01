@@ -139,6 +139,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ReportesController.cs" />
     <Compile Include="Controllers\RutasController.cs" />
+    <Compile Include="Controllers\RutaTransportadorController.cs" />
     <Compile Include="Controllers\SesionController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -399,6 +400,11 @@
     <Content Include="Views\Rutas\MapaCalor.cshtml" />
     <Content Include="Views\Rutas\AgregarUnEvento.cshtml" />
     <Content Include="Views\Reportes\Index.cshtml" />
+    <Content Include="Views\RutaTransportador\Create.cshtml" />
+    <Content Include="Views\RutaTransportador\Delete.cshtml" />
+    <Content Include="Views\RutaTransportador\Details.cshtml" />
+    <Content Include="Views\RutaTransportador\Edit.cshtml" />
+    <Content Include="Views\RutaTransportador\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,55 @@
+﻿@model Cajeros.Repositorio.Ruta
+
+@{
+    ViewBag.Title = "Create";
+}
+
+
+<h4>Ruta</h4>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+        <hr />
+    <div class="form-horizontal row">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group col-md-6">
+            @Html.LabelFor(model => model.IdCajero, "IdCajero", htmlAttributes: new { @class = "control-label col-md-12" })
+            <div class="col-md-12">
+                @Html.DropDownList("IdCajero", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.IdCajero, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group col-md-6">
+            @Html.LabelFor(model => model.Fecha, htmlAttributes: new { @class = "control-label col-md-12" })
+            <div class="col-md-12">
+                @Html.EditorFor(model => model.Fecha, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Fecha, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group col-md-6">
+            @Html.LabelFor(model => model.Cumplido, htmlAttributes: new { @class = "control-label col-md-12" })
+            <div class="col-md-12">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.Cumplido)
+                    @Html.ValidationMessageFor(model => model.Cumplido, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group col-12">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Guardar" class="btn btn-outline-primary" />
+                @Html.ActionLink("Volver", "Index",new { },new {Class="btn btn-outline-dark" })
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

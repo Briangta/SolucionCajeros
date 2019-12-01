@@ -13,6 +13,8 @@
         <AssociationConnector Association="RetoModel.FK_IdCajero" />
         <AssociationConnector Association="RetoModel.FkComportamientoCajero" />
         <AssociationConnector Association="RetoModel.FK_IdRol" />
+        <EntityTypeShape EntityType="RetoModel.Ruta" Width="1.5" PointX="3" PointY="8.25" />
+        <AssociationConnector Association="RetoModel.FK_IdCajeroRuta" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

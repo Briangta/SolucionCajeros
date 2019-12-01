@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Cajeros.Repositorio.Ruta>
+
+@{
+    ViewBag.Title = "Rutas";
+}
+<br>
+<h4>Mis rutas</h4>
+
+
+<table class="table">
+    <tr>
+        <th>
+            Dirección
+        </th>
+        <th>
+            Fecha
+        </th>
+        <th>
+            Abastecido
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+
+                @Html.DisplayFor(modelItem => item.Cajero.Direccion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fecha)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cumplido)
+            </td>
+            <td>
+            </td>
+            <td>
+                <button type="button" class="btn btn-outline-dark">
+                    Confirmar
+                </button>
+        </tr>
+    }
+
+</table>
