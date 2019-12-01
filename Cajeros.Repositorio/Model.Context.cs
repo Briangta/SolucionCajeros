@@ -18,6 +18,7 @@ namespace Cajeros.Repositorio
         public RetoEntities()
             : base("name=RetoEntities")
         {
+    		this.Configuration.LazyLoadingEnabled = false ;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -26,8 +27,9 @@ namespace Cajeros.Repositorio
         }
     
         public virtual DbSet<Cajero> Cajero { get; set; }
+        public virtual DbSet<Comportamiento> Comportamiento { get; set; }
+        public virtual DbSet<Evento> Evento { get; set; }
         public virtual DbSet<Roles> Roles { get; set; }
         public virtual DbSet<Usuarios> Usuarios { get; set; }
-        public virtual DbSet<Evento> Evento { get; set; }
     }
 }

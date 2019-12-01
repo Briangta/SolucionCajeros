@@ -20,6 +20,7 @@ namespace Cajeros.Repositorio
         public Cajero()
         {
             this.Evento = new HashSet<Evento>();
+            this.Comportamiento = new HashSet<Comportamiento>();
         }
     
         public int IdCajero { get; set; }
@@ -27,8 +28,11 @@ namespace Cajeros.Repositorio
         public string Lat { get; set; }
         public string Lng { get; set; }
         public string Direccion { get; set; }
+        public int Tipo { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Evento> Evento { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Comportamiento> Comportamiento { get; set; }
     }
 }

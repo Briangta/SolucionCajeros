@@ -18,52 +18,55 @@ namespace Cajeros.Repositorio
 {
     
     
-    public class CajeroMetaData
+    public class ComportamientoMetaData
     {
     	[Key]
         [Required]
-        public virtual int IdCajero
+        public virtual int IdComportamiento
         {
             get;
             set;
         }
-    	
-        [StringLength(255, ErrorMessage="El campo no puede ser mayor a 255 caracteres")]
-        [Required]
-        public virtual string Nombre
+        public virtual Nullable<int> Cant50
         {
             get;
             set;
         }
-    	
-        [StringLength(255, ErrorMessage="El campo no puede ser mayor a 255 caracteres")]
-        [Required]
-        public virtual string Lat
+        public virtual Nullable<int> Cant20
         {
             get;
             set;
         }
-    	
-        [StringLength(255, ErrorMessage="El campo no puede ser mayor a 255 caracteres")]
-        [Required]
-        public virtual string Lng
+        public virtual Nullable<int> Cant10
         {
             get;
             set;
         }
-    	
-        [StringLength(500, ErrorMessage="El campo no puede ser mayor a 500 caracteres")]
-        [Required]
-        public virtual string Direccion
+        public virtual Nullable<int> Pago50
         {
             get;
             set;
         }
-        [Required]
-        public virtual int Tipo
+        public virtual Nullable<int> Pago20
         {
             get;
             set;
+        }
+        public virtual Nullable<int> Pago10
+        {
+            get;
+            set;
+        }
+        public virtual Nullable<System.DateTime> Fecha
+        {
+            get;
+            set;
+        }
+        public virtual Nullable<int> IdCajero
+        {
+            get;
+            set;
+    
         }
     }
 }

@@ -5,11 +5,13 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="86cc1f160d6a45b68251c657036926ce" Name="Diagram1">
-        <EntityTypeShape EntityType="RetoModel.Cajero" Width="1.5" PointX="0.75" PointY="5" />
-        <EntityTypeShape EntityType="RetoModel.Evento" Width="1.5" PointX="3" PointY="5" />
-        <EntityTypeShape EntityType="RetoModel.Roles" Width="1.5" PointX="0.75" PointY="1.375" />
-        <EntityTypeShape EntityType="RetoModel.Usuarios" Width="1.5" PointX="3" PointY="1" />
+        <EntityTypeShape EntityType="RetoModel.Cajero" Width="1.5" PointX="0.75" PointY="2.875" />
+        <EntityTypeShape EntityType="RetoModel.Comportamiento" Width="1.5" PointX="3" PointY="1.125" />
+        <EntityTypeShape EntityType="RetoModel.Evento" Width="1.5" PointX="3" PointY="4.875" />
+        <EntityTypeShape EntityType="RetoModel.Roles" Width="1.5" PointX="5.75" PointY="1.375" />
+        <EntityTypeShape EntityType="RetoModel.Usuarios" Width="1.5" PointX="8" PointY="1" />
         <AssociationConnector Association="RetoModel.FK_IdCajero" />
+        <AssociationConnector Association="RetoModel.FkComportamientoCajero" />
         <AssociationConnector Association="RetoModel.FK_IdRol" />
       </Diagram>
     </edmx:Diagrams>

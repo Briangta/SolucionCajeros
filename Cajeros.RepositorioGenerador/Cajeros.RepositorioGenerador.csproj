@@ -45,6 +45,9 @@
     <Compile Include="CajeroMetaData.cs">
       <DependentUpon>CajerosGenerador.tt</DependentUpon>
     </Compile>
+    <Compile Include="ComportamientoMetaData.cs">
+      <DependentUpon>CajerosGenerador.tt</DependentUpon>
+    </Compile>
     <Compile Include="EventoMetaData.cs">
       <DependentUpon>CajerosGenerador.tt</DependentUpon>
     </Compile>

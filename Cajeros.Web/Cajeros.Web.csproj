@@ -153,7 +153,12 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\Images\Group.png" />
+    <Content Include="Content\Images\LOGO1.png" />
+    <Content Include="Content\Images\LOGO2-BLANCO.png" />
+    <Content Include="Content\Images\LOGO2.png" />
     <Content Include="Content\Images\nota-scotiabank.png" />
+    <Content Include="Content\Images\scotia.png" />
     <Content Include="Content\mapa.css" />
     <Content Include="Content\sb-admin-2.min.css" />
     <Content Include="favicon.ico" />

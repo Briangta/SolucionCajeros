@@ -11,9 +11,24 @@
           </Key>
           <Property Name="IdCajero" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="255" Nullable="false" />
-          <Property Name="Lat" Type="varchar" MaxLength="255" />
-          <Property Name="Lng" Type="varchar" MaxLength="255" />
-          <Property Name="Direccion" Type="varchar" MaxLength="500" />
+          <Property Name="Lat" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Lng" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Direccion" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="Tipo" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Comportamiento">
+          <Key>
+            <PropertyRef Name="IdComportamiento" />
+          </Key>
+          <Property Name="IdComportamiento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Cant50" Type="int" />
+          <Property Name="Cant20" Type="int" />
+          <Property Name="Cant10" Type="int" />
+          <Property Name="Pago50" Type="int" />
+          <Property Name="Pago20" Type="int" />
+          <Property Name="Pago10" Type="int" />
+          <Property Name="Fecha" Type="datetime" />
+          <Property Name="IdCajero" Type="int" />
         </EntityType>
         <EntityType Name="Evento">
           <Key>
@@ -68,8 +83,21 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FkComportamientoCajero">
+          <End Role="Cajero" Type="Self.Cajero" Multiplicity="0..1" />
+          <End Role="Comportamiento" Type="Self.Comportamiento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cajero">
+              <PropertyRef Name="IdCajero" />
+            </Principal>
+            <Dependent Role="Comportamiento">
+              <PropertyRef Name="IdCajero" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="RetoModelStoreContainer">
           <EntitySet Name="Cajero" EntityType="Self.Cajero" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Comportamiento" EntityType="Self.Comportamiento" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Evento" EntityType="Self.Evento" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
@@ -81,6 +109,10 @@
             <End Role="Roles" EntitySet="Roles" />
             <End Role="Usuarios" EntitySet="Usuarios" />
           </AssociationSet>
+          <AssociationSet Name="FkComportamientoCajero" Association="Self.FkComportamientoCajero">
+            <End Role="Cajero" EntitySet="Cajero" />
+            <End Role="Comportamiento" EntitySet="Comportamiento" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -88,12 +120,17 @@
       <Schema Namespace="RetoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="RetoEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Cajero" EntityType="RetoModel.Cajero" />
+          <EntitySet Name="Comportamiento" EntityType="RetoModel.Comportamiento" />
           <EntitySet Name="Evento" EntityType="RetoModel.Evento" />
           <EntitySet Name="Roles" EntityType="RetoModel.Roles" />
           <EntitySet Name="Usuarios" EntityType="RetoModel.Usuarios" />
           <AssociationSet Name="FK_IdCajero" Association="RetoModel.FK_IdCajero">
             <End Role="Cajero" EntitySet="Cajero" />
             <End Role="Evento" EntitySet="Evento" />
+          </AssociationSet>
+          <AssociationSet Name="FkComportamientoCajero" Association="RetoModel.FkComportamientoCajero">
+            <End Role="Cajero" EntitySet="Cajero" />
+            <End Role="Comportamiento" EntitySet="Comportamiento" />
           </AssociationSet>
           <AssociationSet Name="FK_IdRol" Association="RetoModel.FK_IdRol">
             <End Role="Roles" EntitySet="Roles" />
@@ -106,10 +143,27 @@
           </Key>
           <Property Name="IdCajero" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nombre" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="Lat" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="Lng" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="Direccion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Lat" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Lng" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Direccion" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Tipo" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Evento" Relationship="RetoModel.FK_IdCajero" FromRole="Cajero" ToRole="Evento" />
+          <NavigationProperty Name="Comportamiento" Relationship="RetoModel.FkComportamientoCajero" FromRole="Cajero" ToRole="Comportamiento" />
+        </EntityType>
+        <EntityType Name="Comportamiento">
+          <Key>
+            <PropertyRef Name="IdComportamiento" />
+          </Key>
+          <Property Name="IdComportamiento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Cant50" Type="Int32" />
+          <Property Name="Cant20" Type="Int32" />
+          <Property Name="Cant10" Type="Int32" />
+          <Property Name="Pago50" Type="Int32" />
+          <Property Name="Pago20" Type="Int32" />
+          <Property Name="Pago10" Type="Int32" />
+          <Property Name="Fecha" Type="DateTime" Precision="3" />
+          <Property Name="IdCajero" Type="Int32" />
+          <NavigationProperty Name="Cajero" Relationship="RetoModel.FkComportamientoCajero" FromRole="Comportamiento" ToRole="Cajero" />
         </EntityType>
         <EntityType Name="Evento">
           <Key>
@@ -155,6 +209,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FkComportamientoCajero">
+          <End Type="RetoModel.Cajero" Role="Cajero" Multiplicity="0..1" />
+          <End Type="RetoModel.Comportamiento" Role="Comportamiento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cajero">
+              <PropertyRef Name="IdCajero" />
+            </Principal>
+            <Dependent Role="Comportamiento">
+              <PropertyRef Name="IdCajero" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_IdRol">
           <End Type="RetoModel.Roles" Role="Roles" Multiplicity="1" />
           <End Type="RetoModel.Usuarios" Role="Usuarios" Multiplicity="*" />
@@ -176,11 +242,27 @@
           <EntitySetMapping Name="Cajero">
             <EntityTypeMapping TypeName="RetoModel.Cajero">
               <MappingFragment StoreEntitySet="Cajero">
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
                 <ScalarProperty Name="Direccion" ColumnName="Direccion" />
                 <ScalarProperty Name="Lng" ColumnName="Lng" />
                 <ScalarProperty Name="Lat" ColumnName="Lat" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="IdCajero" ColumnName="IdCajero" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Comportamiento">
+            <EntityTypeMapping TypeName="RetoModel.Comportamiento">
+              <MappingFragment StoreEntitySet="Comportamiento">
+                <ScalarProperty Name="IdCajero" ColumnName="IdCajero" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Pago10" ColumnName="Pago10" />
+                <ScalarProperty Name="Pago20" ColumnName="Pago20" />
+                <ScalarProperty Name="Pago50" ColumnName="Pago50" />
+                <ScalarProperty Name="Cant10" ColumnName="Cant10" />
+                <ScalarProperty Name="Cant20" ColumnName="Cant20" />
+                <ScalarProperty Name="Cant50" ColumnName="Cant50" />
+                <ScalarProperty Name="IdComportamiento" ColumnName="IdComportamiento" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
