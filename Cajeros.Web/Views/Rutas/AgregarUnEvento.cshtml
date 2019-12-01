@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewBag.Title = "AgregarUnEvento";
+    Layout = "~/Views/Shared/_LayoutLimpia.cshtml";
+}
+
+<h2>Agregar Un Evento</h2>
+<br/>
+<div class="col-12">
+    @Html.Label("Zona:")
+    @Html.DropDownList("Zona", null, new { Class = "form-control" })
+    <br />
+    @Html.Label("Tipo:")
+    @Html.DropDownList("Zona", null, new { Class = "form-control" })
+
+    @Html.Label("Razon:")
+    @Html.TextArea("Razon",new {Class="form-control" })
+
+    <button class="btn btn-outline-primary">Agregar</button>
+</div>

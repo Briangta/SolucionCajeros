@@ -9,12 +9,15 @@
     </div>
     <div class="col-4">
         <h4>Ruta Sugerida</h4>
+        <br />
+        @Html.ActionLink("Agregar Evento", "AgregarUnEvento", new { }, new { Class = "iframe btn btn-primary" })
+        <br /><br />
         <div class="objetoLista col-12">
             <div class="Nombre"></div>
             <div class="Direccion"></div>
         </div>
     </div>
-    <div class="col-4 offset-4">
+    <div class="col-4 offset-10">
         <button class="btn btn-outline-success">Envíar</button>
     </div>
 
