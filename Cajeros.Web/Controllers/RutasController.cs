@@ -17,5 +17,10 @@ namespace Cajeros.Web.Controllers
             return View();
         }
 
+        public ActionResult MapaCalor()
+        {
+            return View();
+        }
+
     }
 }

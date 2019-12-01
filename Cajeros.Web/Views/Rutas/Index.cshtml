@@ -14,6 +14,9 @@
             <div class="Direccion"></div>
         </div>
     </div>
+    <div class="col-4 offset-4">
+        <button class="btn btn-outline-success">Envíar</button>
+    </div>
 
 </div>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB7jYnrOgeGU07m5AI192gyoJLxwIgwOY0&callback=initMap"
@@ -63,17 +66,15 @@
 
         $.get(url + "Ruta", function (data) {
             $.each(data, function (index, value) {
-                
-                marker.addListener('click', function () {
-                    bootbox.alert("Cajero: "+value.Nombre+"\n Direccion"+value.Direccion+" \n Cantidad Dinero")
-                });
 
-                var copia=$(".objetoLista").clone();
+                var copia = $(".objetoLista").first().clone();
                 $(copia).find(".Nombre").text(value.Nombre);
                 $(copia).find(".Direccion").text(value.Direccion);
                 $(".objetoLista").parent().append(copia)
                 //marker.setMap(map);
-            })
+            });
+
+            $(".objetoLista").first().remove();
         })
     });
 
