@@ -14,11 +14,15 @@
     <link href="~/Content/sb-admin-2.min.css" rel="stylesheet" />
     <link href="~/Content/font-awesome.css" rel="stylesheet" />
     @RenderSection("scripts", required: false)
-    <script src="~/Scripts/sb-admin-2.min.js"></script>
+
     <link href="~/Content/jquery.fancybox.css" rel="stylesheet" />
+    <link href="~/Content/Chart.min.css" rel="stylesheet" />
+
+    <script src="~/Scripts/sb-admin-2.min.js"></script>
     <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
     <script src="~/Scripts/bootbox.js"></script>
     <script src="~/Scripts/jquery.fancybox.js"></script>
+    <script src="~/Scripts/Chart.min.js"></script>
     <script src="~/Scripts/site.js"></script>
 </head>
 
@@ -49,10 +53,11 @@
                     <span>Rutas</span>
                 </a>
             </li>
+
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="@Url.Action("Index","Reportes")">
                     <i class="fa fa-bar-chart"></i>
-                    <span>Grafico</span>
+                    <span>Reportes</span>
                 </a>
             </li>
 

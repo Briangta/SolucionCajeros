@@ -71,6 +71,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Acceso.cs" />
+    <Compile Include="Enumeradores\EnumGrafico.cs" />
     <Compile Include="Enumeradores\EnumRol.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilidades.cs" />

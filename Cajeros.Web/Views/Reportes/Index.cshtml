@@ -1,0 +1,67 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 class="col-12">@ViewBag.Titulo</h2>
+<br/><br/>
+<ul class="nav nav-tabs">
+    <li class="nav-item">
+        <a class="nav-link @Html.Raw(ViewBag.Reporte==1?"active":"")" href="@Url.Action("Index", new { idReporte = 1 })">Retiros por Cajeros</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link @Html.Raw(ViewBag.Reporte==2?"active":"")" href="@Url.Action("Index", new { idReporte = 2 })">Retiros por Día Mes</a>
+    </li>
+</ul>
+
+<div class="col-12 text-center" style="position: relative;">
+    <div class="col-8 offset-2">
+        <canvas id="grafico"></canvas>
+    </div>
+    <button tipo="bar" class="tipoGrafico btn btn-outline-dark">Barras</button>
+    <button tipo="line" class="tipoGrafico btn btn-outline-dark">Linea</button>
+    <button tipo="radar" class="tipoGrafico btn btn-outline-dark">Radar</button>
+    <button tipo="pie" class="tipoGrafico btn btn-outline-dark">Pastel</button>
+    <button tipo="polarArea" class="tipoGrafico btn btn-outline-dark">Polar</button>
+
+</div>
+
+<script>
+    var barChartData = {
+        labels: [@Html.Raw(ViewBag.YLabel)],
+        datasets: [{
+            label: 'Cantidad',
+            backgroundColor: [@Html.Raw(ViewBag.Colores)],
+            borderColor: "black",
+            borderWidth: 1,
+            data: [@ViewBag.Y]
+        }]
+    };
+
+    function generarGrafico(tipo) {
+        try { window.myBar.destroy(); } catch{}
+        var ctx = document.getElementById('grafico').getContext('2d');
+
+	    window.myBar = new Chart(ctx, {
+		    type: tipo,
+		    data: barChartData,
+		    options: {
+			    responsive: true,
+			    legend: {
+				    position: 'top',
+			    },
+			    title: {
+				    display: false
+			    }
+		    }
+        });
+    }
+
+    $(document).ready(function () {
+        generarGrafico('bar');
+
+        $(".tipoGrafico").click(function () {
+            generarGrafico($(this).attr("tipo"))
+        });
+    });
+</script>
